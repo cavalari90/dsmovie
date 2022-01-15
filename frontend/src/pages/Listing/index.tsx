@@ -1,20 +1,29 @@
 import axios from "axios";
 import MovieCard from "components/MovieCard";
 import Pagination from "components/Pagination";
+import { useState } from "react";
+import { MoviePage } from "types/movie";
 import { BASE_URL } from "utils/requests";
 
 function Listing() {
 //componente react é uma função javascript e então pode ter uma lógica por aqui...
 // .then() => é o que vai executar depois que a requisição voltar. (Assíncrono: o resto continua)
 
-axios.get(`${BASE_URL}/movies?size=5&page=0`)
-.then(Response => {
-    console.log(Response.data);
+//useState passa valores iniciais
+const [pageNumber, setPageNumber] = useState(0);
+
+
+axios.get(`${BASE_URL}/movies?size=5&page=1`)
+.then(response => {
+    const data = response.data as MoviePage;
+    setPageNumber(data.number);
+   // console.log(response.data);
 });
 
 
     return (
         <>
+            <p>{pageNumber}</p>
             <Pagination />
 
 
