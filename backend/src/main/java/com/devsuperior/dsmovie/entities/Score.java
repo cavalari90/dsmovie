@@ -12,7 +12,7 @@ public class Score {
 	private ScorePK id = new ScorePK();
 	private Double value;
 
-	Score(){
+	public Score(){
 	}
 
 	
